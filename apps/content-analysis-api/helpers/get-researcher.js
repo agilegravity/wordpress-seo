@@ -39,8 +39,8 @@ const HungarianResearcher =
 	require("yoastseo/build/languageProcessing/languages/hu/Researcher").default;
 const NorwegianResearcher =
 	require("yoastseo/build/languageProcessing/languages/nb/Researcher").default;
-const TurkishResearcher =
-	require("yoastseo/build/languageProcessing/languages/tr/Researcher").default;
+// const TurkishResearcher =
+// require("yoastseo/build/languageProcessing/languages/tr/Researcher").default;
 const CzechResearcher =
 	require("yoastseo/build/languageProcessing/languages/cs/Researcher").default;
 const SlovakResearcher =
@@ -65,7 +65,7 @@ const RESEARCHERS = {
 	he: HebrewResearcher,
 	hu: HungarianResearcher,
 	nb: NorwegianResearcher,
-	tr: TurkishResearcher,
+	// tr: TurkishResearcher,
 	cs: CzechResearcher,
 	sk: SlovakResearcher,
 	ja: JapaneseResearcher,
