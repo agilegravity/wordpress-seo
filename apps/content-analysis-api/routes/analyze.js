@@ -31,7 +31,7 @@ const resultToVM = ( result ) => {
 };
 
 module.exports = function( app ) {
-	app.get( "/analyze", ( request, response ) => {
+	app.post( "/analyze", ( request, response ) => {
 		// Fetch the Researcher and set the morphology data for the given language (yes, this is a bit hacky)
 		const language = request.body.locale || "en";
 
@@ -64,7 +64,7 @@ module.exports = function( app ) {
 		} );
 	} );
 
-	app.get( "/analyze/seo", ( request, response ) => {
+	app.post( "/analyze/seo", ( request, response ) => {
 		const language = request.body.locale || "en";
 		const researcher = getResearcher( language );
 		const assessor = new SEOAssessor( researcher );
@@ -79,7 +79,7 @@ module.exports = function( app ) {
 		response.json( assessor.getValidResults().map( resultToVM ) );
 	} );
 
-	app.get( "/analyze/readability", ( request, response ) => {
+	app.post( "/analyze/readability", ( request, response ) => {
 		const language = request.body.locale || "en";
 		const researcher = getResearcher( language );
 		const assessor = new ContentAssessor( researcher );
@@ -93,7 +93,7 @@ module.exports = function( app ) {
 		response.json( assessor.getValidResults().map( resultToVM ) );
 	} );
 
-	app.get( "/analyze/related-keyphrase", ( request, response ) => {
+	app.post( "/analyze/related-keyphrase", ( request, response ) => {
 		const language = request.body.locale || "en";
 		const researcher = getResearcher( language );
 		const assessor = new RelatedKeywordAssessor( researcher );
@@ -105,7 +105,7 @@ module.exports = function( app ) {
 		response.json( assessor.getValidResults().map( resultToVM ) );
 	} );
 
-	app.get( "/analyze/inclusive-language", ( request, response ) => {
+	app.post( "/analyze/inclusive-language", ( request, response ) => {
 		const language = request.body.locale || "en";
 		const researcher = getResearcher( language );
 		const assessor = new InclusiveLanguageAssessor( researcher );
@@ -117,7 +117,7 @@ module.exports = function( app ) {
 		response.json( assessor.getValidResults().map( resultToVM ) );
 	} );
 
-	app.get( "/analyze/meta-description", ( request, response ) => {
+	app.post( "/analyze/meta-description", ( request, response ) => {
 		if (! request.body.description) {
 			return response.status( 400 ).json( { error: "Description is required" } );
 		}
@@ -132,7 +132,7 @@ module.exports = function( app ) {
 		response.json( assessor.getValidResults().map( resultToVM ) );
 	} );
 
-	app.get( "/analyze/seo-title", ( request, response ) => {
+	app.post( "/analyze/seo-title", ( request, response ) => {
 		if (! request.body.title) {
 			return response.status( 400 ).json( { error: "Title is required" } );
 		}
@@ -147,7 +147,7 @@ module.exports = function( app ) {
 		response.json( assessor.getValidResults().map( resultToVM ) );
 	} );
 
-	app.get( "/analyze/keyphrase", ( request, response ) => {
+	app.post( "/analyze/keyphrase", ( request, response ) => {
 		if (! request.body.keyword) {
 			return response.status( 400 ).json( { error: "Keyword is required" } );
 		}
@@ -162,7 +162,7 @@ module.exports = function( app ) {
 		response.json( assessor.getValidResults().map( resultToVM ) );
 	} );
 
-	app.get( "/analyze/keyphrase-use", ( request, response ) => {
+	app.post( "/analyze/keyphrase-use", ( request, response ) => {
 		if (! request.body.keyword) {
 			return response.status( 400 ).json( { error: "Keyword is required" } );
 		}
